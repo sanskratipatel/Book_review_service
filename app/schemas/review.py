@@ -1,5 +1,3 @@
-
-# app/schemas/review.py
 from pydantic import BaseModel, Field, conint
 from pydantic.config import ConfigDict
 
