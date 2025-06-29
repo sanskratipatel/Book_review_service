@@ -1,6 +1,6 @@
 # check.py
 import asyncio
-import redis.asyncio as redis
+import redis
 
 async def check_redis():
     try:
