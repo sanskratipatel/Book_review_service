@@ -19,16 +19,13 @@ async def list_books(
     current_user: str = Depends(get_current_user)
 ):
     try:
-        cached = await get_cached_books()  # ✅ now truly async
+        cached = await get_cached_books() 
         if cached:
             return json.loads(cached)
-
         books = books_crud.get_books(db)
         data = [BookOut.from_orm(book).dict() for book in books]
         await set_cached_books(json.dumps(data))
-        return data  # ✅ now returns lightweight dicts
-
-
+        return data 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to list books: {e}")
 
