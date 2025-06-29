@@ -1,0 +1,37 @@
+# 🌱 Environment
+.env
+*.env
+
+# 🔒 SQLite databases
+*.db
+*.sqlite3
+instance/
+__pycache__/
+
+# 🧪 Pytest cache and test DB
+.pytest_cache/
+test.db
+
+# 📦 Python environment folders
+venv/
+veenv/
+env/
+*.egg-info/
+
+# 🧹 IDE and editor files
+.vscode/
+.idea/
+
+# 🐍 Compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# 📦 Dependency lock files (optional)
+poetry.lock
+Pipfile.lock
+
+# 📄 Logs and temp
+*.log
+*.tmp
