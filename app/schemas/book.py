@@ -12,4 +12,4 @@ class BookCreate(BookBase):
 class BookOut(BookBase):
     id: int
 
-    model_config = ConfigDict(from_attributes=True)  # ✅ For SQLAlchemy ORM objects
+    model_config = ConfigDict(from_attributes=True) 

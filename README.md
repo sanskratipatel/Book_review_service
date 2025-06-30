@@ -32,10 +32,12 @@ Book_review_service/
 │   │   └── redis_cache.py     # Functions to cache book data in Redis
 │   ├── models/
 │   │   ├── book.py            # SQLAlchemy model for Book
-│   │   └── review.py          # SQLAlchemy model for Review
+│   │   |── review.py          # SQLAlchemy model for Review
+|   |   |---user.py            # SQLAlchemy model for User
 │   ├── schemas/
 │   │   ├── book.py            # Pydantic validation schema for Book
 │   │   └── review.py          # Pydantic schema for Review
+|   |   |---user.py            # Pydantic schema for user
 │   ├── core/
 │   │   └── security.py        # JWT generation and password hashing
 │   └── tests/
@@ -127,7 +129,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```bash
 git clone https://github.com/sanskratipatel/Book_review_service.git
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # This is for Linux / WSL to activate Virtual Enviroment
 ```
 
 ### 2. Install dependencies
@@ -153,10 +155,10 @@ sudo service redis-server start
 redis-server
 ```
 
-> **Note for Windows**: Redis is not officially supported on Windows. Use WSL (Windows Subsystem for Linux) or Docker to run Redis:
+> **Note for Windows**: Redis is not officially supported on Windows. Use WSL or Linux :
 
 ```bash
-# WSL (Ubuntu)
+# WSL (Ubuntu) or Linux
 sudo apt update
 sudo apt install redis-server
 sudo service redis-server start
@@ -171,8 +173,10 @@ uvicorn app.main:app --reload   // For Start Fast Api Server
 
 Server will be available at:
 `http://127.0.0.1:8000`
-`http://127.0.0.1:8000/docs`   // For Swagger
-
+`http://127.0.0.1:8000/docs`  :- For Swagger
+ OnSwagger if you click on  /openapi.json 
+ You can see all routes Details  
+ 
 ---
 
 ## Run Tests
@@ -189,7 +193,9 @@ This runs all test cases in `app/tests/`.
 * All API actions that require authentication must include a `Bearer` token in the `Authorization` header.
 * Redis caching helps improve performance by storing book list responses for quick access.
 * Pytest ensures all routes and logic are covered with unit tests.
-* You can extend the system to support pagination, search, ratings average, and user roles.
+* You can extend the system to support pagination, search, ratings average, and user roles. 
+
+For More Details Contact :- patelsanskrati05@gmail.com 
 
 ---
 
