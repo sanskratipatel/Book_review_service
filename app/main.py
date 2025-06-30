@@ -17,8 +17,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(books.router)
-app.include_router(auth.router, prefix="/auth", tags=["auth"])
-@app.get("/")
+app.include_router(books.router , prefix="/book", tags=["BookReview"])
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+@app.get("/" ,  tags=["Main"])
 def root():
-    return {"message": "Welcome to Book Review Service"}
+    return {"message": "Welcome to Book Review Service !!!!!!!!!!!!!!!!!! "}

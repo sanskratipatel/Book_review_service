@@ -11,11 +11,12 @@ def get_reviews_by_book(db: Session, book_id: int):
         raise HTTPException(status_code=404, detail="Book not found")
     return db.query(Review).filter(Review.book_id == book_id).all()
 
+
+
 def create_review(db: Session, book_id: int, review: ReviewCreate):
     if not db.query(Book).filter(Book.id == book_id).first():
         raise HTTPException(status_code=404, detail="Book not found")
-
-    db_review = Review(**review.model_dump(), book_id=book_id)  # ✅ Pydantic v2
+    db_review = Review(**review.model_dump(), book_id=book_id)  
     db.add(db_review)
     db.commit()
     db.refresh(db_review)

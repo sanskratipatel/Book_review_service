@@ -12,7 +12,7 @@ import json
 
 router = APIRouter()
 
-
+#  get all books 
 @router.get("/books", response_model=list[BookOut])
 async def list_books(
     db: Session = Depends(get_db),
@@ -29,7 +29,7 @@ async def list_books(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to list books: {e}")
 
-
+#  Add a book  (auth required)
 
 @router.post("/books", response_model=BookOut)
 def add_book(
@@ -38,12 +38,12 @@ def add_book(
     current_user: str = Depends(get_current_user)
 ):
     try:
-        return books_crud.create_book(db, book)  # ✅ NO `with db.begin()`
+        return books_crud.create_book(db, book)  
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to add book: {e}")
 
 
-# ✅ Get reviews of a book (auth required)
+#  Get reviews of a book (auth required)
 @router.get("/books/{book_id}/reviews", response_model=list[ReviewOut])
 def get_reviews(
     book_id: int,
@@ -56,7 +56,7 @@ def get_reviews(
         raise HTTPException(status_code=404, detail=f"Reviews not found: {e}")
 
 
-# ✅ Add a review to a book (transaction + auth)
+# Add a review to a book  (auth required)
 @router.post("/books/{book_id}/reviews", response_model=ReviewOut)
 def add_review(
     book_id: int,
@@ -65,7 +65,7 @@ def add_review(
     current_user: str = Depends(get_current_user)
 ):
     try:
-       
-            return reviews_crud.create_review(db, book_id, review)
+        print(f"db {db} book_id {book_id}  review {review}")
+        return reviews_crud.create_review(db, book_id, review)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to add review: {e}")
